@@ -32,7 +32,8 @@ public class MovieService {
     }
 
     public Movie editMovieById(Integer id, Movie movie) {
-        Movie movieToEdit = this.getMovieById(id);
-        return movieToEdit;
+        movie.setId(id);
+        this.addMovie(movie);
+        return movie;
     }
 }
