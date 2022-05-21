@@ -1,18 +1,26 @@
 package com.pjatk.movieservice.movie.model;
 
 
+import javax.persistence.*;
+
+@Entity
 public class Movie {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private MovieCategory movieCategory;
 
+    @Enumerated(EnumType.STRING)
+    private MovieCategory category;
+
+    private boolean isAvailable;
 
     public Movie() {
     }
 
-    public Movie(String name, MovieCategory movieCategory) {
+    public Movie(String name, MovieCategory category) {
         this.name = name;
-        this.movieCategory = movieCategory;
+        this.category = category;
     }
 
     public Integer getId() {
@@ -31,11 +39,19 @@ public class Movie {
         this.name = name;
     }
 
-    public MovieCategory getMovieCategory() {
-        return movieCategory;
+    public MovieCategory getCategory() {
+        return category;
     }
 
-    public void setMovieCategory(MovieCategory movieCategory) {
-        this.movieCategory = movieCategory;
+    public void setCategory(MovieCategory movieCategory) {
+        this.category = movieCategory;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 }

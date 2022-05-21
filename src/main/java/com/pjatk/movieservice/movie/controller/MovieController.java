@@ -1,14 +1,10 @@
 package com.pjatk.movieservice.movie.controller;
 
 import com.pjatk.movieservice.movie.model.Movie;
-import com.pjatk.movieservice.movie.model.MovieCategory;
 import com.pjatk.movieservice.movie.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,22 +19,26 @@ public class MovieController {
 
     @GetMapping("/movies")
     public ResponseEntity<List<Movie>> getMovies() {
-        return ResponseEntity.ok(this.movieService.getMovies());
+        return ResponseEntity.ok(movieService.getMovies());
     }
 
     @GetMapping("/movies/{id}")
     public ResponseEntity<Movie> getMovieById(@PathVariable Integer id) {
-        return ResponseEntity.ok(this.movieService.getMovieById(id));
+        return ResponseEntity.ok(movieService.getMovieById(id));
+    }
+
+    @PatchMapping("/movies/{id}/available")
+    public ResponseEntity<Movie> makeMovieAvailableById(@PathVariable Integer id) {
+        return ResponseEntity.ok(movieService.makeMovieAvailableById(id));
     }
 
     @PostMapping("/movies")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-        return ResponseEntity.ok(this.movieService.addMovie(movie));
+        return ResponseEntity.ok(movieService.saveMovie(movie));
     }
-
 
     @PostMapping("/movies/{id}")
     public ResponseEntity<Movie> editMovieById(@PathVariable Integer id, @RequestBody Movie movie) {
-        return ResponseEntity.ok(this.movieService.editMovieById(id, movie));
+        return ResponseEntity.ok(movieService.editMovieById(id, movie));
     }
 }
