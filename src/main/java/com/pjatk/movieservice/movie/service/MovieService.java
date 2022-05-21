@@ -35,12 +35,10 @@ public class MovieService {
         return movie;
     }
 
-    public Movie editMovieById(Integer id, Movie movie) {
-        if (movieRepository.existsById(id)) {
-            movie.setId(id);
-            return saveMovie(movie);
-        } else {
-            throw new MovieNotFoundException();
-        }
+    public Movie editMovieById(Integer id, Movie newMovie) {
+        Movie movie = getMovieById(id);
+        movie.setName(newMovie.getName());
+        movie.setCategory(newMovie.getCategory());
+        return saveMovie(movie);
     }
 }
