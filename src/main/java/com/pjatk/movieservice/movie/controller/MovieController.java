@@ -27,9 +27,14 @@ public class MovieController {
         return ResponseEntity.ok(movieService.getMovieById(id));
     }
 
-    @PatchMapping("/movies/{id}/available")
+    @PutMapping("/movies/{id}/available")
     public ResponseEntity<Movie> makeMovieAvailableById(@PathVariable Integer id) {
         return ResponseEntity.ok(movieService.makeMovieAvailableById(id));
+    }
+
+    @PutMapping("/movies/{id}/unavailable")
+    public ResponseEntity<Movie> makeMovieUnavailableById(@PathVariable Integer id) {
+        return ResponseEntity.ok(movieService.makeMovieUnavailableById(id));
     }
 
     @PostMapping("/movies")

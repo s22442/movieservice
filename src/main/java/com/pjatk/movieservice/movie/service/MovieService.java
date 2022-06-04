@@ -30,6 +30,13 @@ public class MovieService {
         return movie;
     }
 
+    public Movie makeMovieUnavailableById(Integer id) {
+        Movie movie = getMovieById(id);
+        movie.setAvailable(false);
+        saveMovie(movie);
+        return movie;
+    }
+
     public Movie saveMovie(Movie movie) {
         movieRepository.save(movie);
         return movie;
